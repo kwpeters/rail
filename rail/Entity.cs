@@ -56,7 +56,6 @@ namespace rail
             return (GetType().ToString() + Id).GetHashCode();
         }
 
-
         protected Entity(string id)
         {
             Id = id;

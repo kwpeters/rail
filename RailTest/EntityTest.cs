@@ -6,7 +6,9 @@ namespace RailTest
 {
     class Person : Entity
     {
+        #region Static Data Members
         private static long _nextId = 0;
+        #endregion
 
         public static Person create(string firstName, string lastName)
         {
@@ -20,9 +22,10 @@ namespace RailTest
             return person;
         }
 
-
+        #region Instance Data Members
         private readonly string _firstName;
         private readonly string _lastName;
+        #endregion
 
         private Person(string id, string firstName, string lastName): base(id)
         {
@@ -32,19 +35,16 @@ namespace RailTest
     }
 
 
-
     [TestClass]
     public class EntityTest
     {
         [TestMethod]
         public void TwoObjects_WithEqualValues_AreNotEqual()
         {
+            // Entities use identifier equality.  Even through they may be
+            // structurally identical, their identifiers will never be equal.
             var person1 = Person.create("Fred", "Flintstone");
             var person2 = Person.create("Fred", "Flintstone");
-
-            Console.WriteLine("person1 Id: {0}", person1.Id);
-            Console.WriteLine("person2 Id: {0}", person2.Id);
-
             Assert.IsFalse(person1 == person2);
             Assert.IsFalse(person1.Equals(person2));
             Assert.IsTrue(person1 != person2);
