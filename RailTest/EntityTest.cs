@@ -4,7 +4,7 @@ using System;
 
 namespace RailTest
 {
-    class Person : Entity
+    public sealed class Person : Entity
     {
         #region Static Data Members
         private static long _nextId = 0;
@@ -27,7 +27,8 @@ namespace RailTest
         private readonly string _lastName;
         #endregion
 
-        private Person(string id, string firstName, string lastName): base(id)
+        private Person(string id, string firstName, string lastName):
+            base(id)
         {
             _firstName = firstName;
             _lastName = lastName;
